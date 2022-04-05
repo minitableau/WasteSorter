@@ -10,7 +10,7 @@ img_width = 180
 batch_size = 32
 
 train_ds = tf.keras.utils.image_dataset_from_directory(
-    'resources/dechets/',
+    'artificial_intelligence/resources/dechets/',
     validation_split=0.2,
     subset="training",
     seed=123,
@@ -18,7 +18,7 @@ train_ds = tf.keras.utils.image_dataset_from_directory(
     batch_size=batch_size)
 
 val_ds = tf.keras.utils.image_dataset_from_directory(
-    'resources/dechets/',
+    'artificial_intelligence/resources/dechets/',
     validation_split=0.2,
     subset="validation",
     seed=123,
@@ -106,7 +106,7 @@ data_augmentation = keras.Sequential(
 # plt.show()
 
 test = tf.keras.utils.load_img(
-    'resources/BouteilleVitel.jpg', target_size=(img_height, img_width)
+    'artificial_intelligence/resources/BouteilleVitel.jpg', target_size=(img_height, img_width)
 )
 
 plt.imshow(test)
@@ -128,7 +128,7 @@ print(
         .format(class_names[np.argmax(score)], 100 * np.max(score)))
 
 test2 = tf.keras.utils.load_img(
-    'resources/masque_noir_test.png', target_size=(img_height, img_width)
+    'artificial_intelligence/resources/masque_noir_test.png', target_size=(img_height, img_width)
 )
 plt.imshow(test2)
 plt.show()

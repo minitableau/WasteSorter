@@ -19,7 +19,7 @@ batch_size = 32
 # ])
 
 # ds_train = tf.keras.preprocessing.image_dataset_from_directory(
-#     'resources/nombres/',
+#     'Data/Nombres/',
 #     labels='inferred',
 #     label_mode = "int",
 #     #class_names = [...]
@@ -33,7 +33,7 @@ batch_size = 32
 #     )
 
 train_ds = tf.keras.utils.image_dataset_from_directory(
-    'resources/flower_photos/',
+    'artificial_intelligence/resources/flower_photos/',
     validation_split=0.2,
     subset="training",
     seed=123,
@@ -41,7 +41,7 @@ train_ds = tf.keras.utils.image_dataset_from_directory(
     batch_size=batch_size)
 
 val_ds = tf.keras.utils.image_dataset_from_directory(
-    'resources/flower_photos/',
+    'artificial_intelligence/resources/flower_photos/',
     validation_split=0.2,
     subset="validation",
     seed=123,
@@ -220,7 +220,7 @@ plt.show()
 #     .format(class_names[np.argmax(score2)], 100 * np.max(score2)))
 #
 img3 = tf.keras.utils.load_img(
-    'resources/fleurs_verifs/dandelionT.jpg', target_size=(img_height, img_width)
+    'artificial_intelligence/resources/fleurs_verifs/dandelionT.jpg', target_size=(img_height, img_width)
 )
 plt.imshow(img3)
 plt.show()
@@ -236,7 +236,7 @@ print(
         .format(class_names[np.argmax(score3)], 100 * np.max(score3)))
 
 img4 = tf.keras.utils.load_img(
-    'resources/fleurs_verifs/tulipe.jpg', target_size=(img_height, img_width)
+    'artificial_intelligence/resources/fleurs_verifs/tulipe.jpg', target_size=(img_height, img_width)
 )
 
 plt.imshow(img4)
@@ -257,7 +257,7 @@ print(
 )
 
 img5 = tf.keras.utils.load_img(
-    'resources/fleurs_verifs/Daisy.jpg', target_size=(img_height, img_width)
+    'artificial_intelligence/resources/fleurs_verifs/Daisy.jpg', target_size=(img_height, img_width)
 )
 
 plt.imshow(img5)
@@ -275,7 +275,7 @@ print(
 )
 
 img6 = tf.keras.utils.load_img(
-    'resources/fleurs_verifs/dandelionDUR.jpg', target_size=(img_height, img_width)
+    'artificial_intelligence/resources/fleurs_verifs/dandelionDUR.jpg', target_size=(img_height, img_width)
 )
 
 plt.imshow(img6)
