@@ -63,7 +63,4 @@ print("Moteur 1 tourne dans le sens 1.")
 while True:
     sens1(1)
 
-# je dois recup le flux video de la camera pr comme ca quand je lui montre un objet avec le code de romeo elle fait
-# bouger le servomoteur en fonction sachant que romeo (il est plus la ce soir il re dm ) ma dit que quand il montrre un
-# objet a la cam de son ordi l'ia arr a savoir c quoi ducoup je me demande comment faire les liens
-# car pr le moment c je tape python3 et le prog du servo
+
