@@ -28,32 +28,46 @@ val_ds = val_ds.cache().prefetch(buffer_size=AUTOTUNE)
 
 normalization_layer = layers.Rescaling(1. / 255)
 
-normalized_ds = train_ds.map(lambda x, y: (normalization_layer(x), y))
-image_batch, labels_batch = next(iter(normalized_ds))
+normalization_layer = train_ds.map(lambda x, y: (normalization_layer(x), y))
+image_batch, labels_batch = next(iter(normalization_layer))
 first_image = image_batch[0]
 # Notice the pixel values are now in `[0,1]`.
 print(np.min(first_image), np.max(first_image))
 
 num_classes = len(class_names)
 
-data_augmentation = keras.Sequential(
-    [layers.RandomFlip("horizontal", input_shape=(img_height, img_width, 3)), layers.RandomRotation(0.2),
-     layers.RandomZoom(0.1), ])
+# data_augmentation = keras.Sequential(
+#     [layers.RandomFlip("horizontal", input_shape=(img_height, img_width, 3)), layers.RandomRotation(0.2),
+#      layers.RandomContrast(factor=0.1)])
+
+data_augmentation = tf.keras.Sequential(
+  [
+    layers.RandomFlip("horizontal", input_shape=(img_width, img_height, 3)),
+    layers.RandomFlip("vertical"),
+  ]
+)
 
 model = Sequential([
-    data_augmentation,
-    layers.Rescaling(1. / 255),
-    layers.Conv2D(16, 3, padding='same', activation='relu'),
-    layers.MaxPooling2D(),
-    layers.Conv2D(32, 3, padding='same', activation='relu'),
-    layers.MaxPooling2D(),
-    layers.Conv2D(64, 3, padding='same', activation='relu'),
-    layers.MaxPooling2D(),
-    layers.Dropout(0.2),
-    layers.Flatten(),
-    layers.Dense(128, activation='relu'),
-    layers.Dense(num_classes)
+  data_augmentation,
+  layers.Rescaling(1./255),
+  layers.Conv2D(32, 3, padding='same', activation='relu'),
+  layers.MaxPooling2D(),
+
+  layers.Conv2D(64, 3, padding='same', activation='relu'),
+  layers.MaxPooling2D(),
+
+  layers.Conv2D(128, 3, padding='same', activation='relu'),
+  layers.MaxPooling2D(),
+
+  layers.Conv2D(256, 3, padding='same', activation='relu'),
+  layers.MaxPooling2D(),
+
+  layers.Flatten(),
+  layers.Dense(128, activation='relu'),  # best 1
+  layers.Dropout(0.3),
+  layers.Dense(num_classes)
 ])
+
 
 model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
@@ -73,7 +87,7 @@ loss = history.history['loss']
 val_loss = history.history['val_loss']
 
 # Save the entire model as a SavedModel.
-model.save('MODEL.h5')
+model.save('models/neural_net.h5')
 loss2, acc2 = model.evaluate(val_ds, verbose=2)
 print('Restored model, accuracy: {:5.2f}%'.format(100 * acc2))
 epochs_range = range(epochs)
@@ -92,7 +106,7 @@ plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
 plt.show()
 
-test = tf.keras.utils.load_img('artificial_intelligence/resources//masque_noir_test.png', target_size=(img_height, img_width))
+test = tf.keras.utils.load_img('resources/masque_noir_test.png', target_size=(img_height, img_width))
 
 plt.imshow(test)
 plt.show()
@@ -106,10 +120,13 @@ score = tf.nn.softmax(predictions[0])
 print("prediction ", predictions)
 print("score", score)
 
-print("This image n1 most likely belongs to {} with a {:.2f} percent confidence.".format(class_names[np.argmax(score)],
+if 100 * np.max(score) <= 75:
+    print("déchet non reconnu")
+else:
+    print("This image n1 most likely belongs to {} with a {:.2f} percent confidence.".format(class_names[np.argmax(score)],
                                                                                          100 * np.max(score)))
 
-test2 = tf.keras.utils.load_img('artificial_intelligence/resources//photoBouteille.jpg', target_size=(img_height, img_width))
+test2 = tf.keras.utils.load_img('resources/BouteilleVitel.jpg', target_size=(img_height, img_width))
 plt.imshow(test2)
 plt.show()
 
@@ -122,5 +139,8 @@ score2 = tf.nn.softmax(predictions2[0])
 print("prediction 2", predictions2)
 print("score 2", score2)
 
-print("This image n2 most likely belongs to {} with a {:.2f} percent confidence.".format(class_names[np.argmax(score2)],
+if 100 * np.max(score2) <= 75:
+    print("déchet non reconnu")
+else:
+    print("This image n2 most likely belongs to {} with a {:.2f} percent confidence.".format(class_names[np.argmax(score2)],
                                                                                          100 * np.max(score2)))

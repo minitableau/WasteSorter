@@ -4,7 +4,6 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 
-#
 img_height = 180
 img_width = 180
 batch_size = 32
