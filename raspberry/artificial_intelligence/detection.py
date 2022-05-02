@@ -35,13 +35,13 @@ img_height = 180
 img_width = 180
 batch_size = 32
 
-train_ds = tf.keras.utils.image_dataset_from_directory('artificial_intelligence/resources/dechets/',
+train_ds = tf.keras.utils.image_dataset_from_directory('resources/dechets/',
                                                        validation_split=0.2, subset="training",
                                                        seed=123, image_size=(img_height, img_width),
                                                        batch_size=batch_size)
 
 class_names = train_ds.class_names
-model = keras.models.load_model('MODEL.h5')
+model = keras.models.load_model('models/neural_net.h5')
 
 import cv2
 
