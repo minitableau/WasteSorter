@@ -4,6 +4,7 @@ import tensorflow as tf
 from tensorflow import keras
 from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
+import time
 
 img_height = 180
 img_width = 180
@@ -51,6 +52,7 @@ while True:
             class_names[np.argmax(score)], 100 * np.max(score)))
 
         # On ajoute un temps d'attente
+        time.sleep(2)
         # et on arrête la boucle si on appuie sur la touche 'q'
         if cv2.waitKey(25) & 0xFF == ord('q'):
             break

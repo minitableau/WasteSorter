@@ -73,7 +73,7 @@ loss = history.history['loss']
 val_loss = history.history['val_loss']
 
 # Save the entire model as a SavedModel.
-model.save('models/ neural_net.h5')
+model.save('models/neural_net3.h5')
 loss2, acc2 = model.evaluate(val_ds, verbose=2)
 print('Restored model, accuracy: {:5.2f}%'.format(100 * acc2))
 epochs_range = range(epochs)
@@ -112,7 +112,7 @@ else:
     print("This image n1 most likely belongs to {} with a {:.2f} percent confidence.".format(class_names[np.argmax(score)],
                                                                                          100 * np.max(score)))
 
-test2 = tf.keras.utils.load_img('resources/BouteilleVitel.jpg', target_size=(img_height, img_width))
+test2 = tf.keras.utils.load_img('resources/GPT1.jpg', target_size=(img_height, img_width))
 plt.imshow(test2)
 plt.show()
 
