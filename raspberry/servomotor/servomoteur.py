@@ -29,15 +29,19 @@ GPIO.setup(pwm_gpio, GPIO.OUT)
 pwm = GPIO.PWM(pwm_gpio, frequence)
 
 # Init at 0°
-pwm.start(angle_to_percent(0))
+pwm.start(angle_to_percent(90))
 time.sleep(1)
 
-# Go at 90°
+# Go at 25°
+pwm.ChangeDutyCycle(angle_to_percent(75))
+time.sleep(10)
+
+# Go at 35°
+pwm.ChangeDutyCycle(angle_to_percent(60))
+time.sleep(10)
+
+# Return 0°
 pwm.ChangeDutyCycle(angle_to_percent(90))
-time.sleep(1)
-
-# Finish at 180°
-pwm.ChangeDutyCycle(angle_to_percent(180))
 time.sleep(1)
 
 # Close GPIO & cleanup
