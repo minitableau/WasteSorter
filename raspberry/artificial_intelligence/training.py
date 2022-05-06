@@ -17,7 +17,7 @@ train_ds = tf.keras.utils.image_dataset_from_directory('resources/dechets/', val
                                                        batch_size=batch_size)
 
 class_names = train_ds.class_names
-image = tf.keras.utils.load_img('resources/masque1.jpg', target_size=(img_height, img_width))
+image = tf.keras.utils.load_img('resources/D1.jpg', target_size=(img_height, img_width))
 
 model = keras.models.load_model('models/neural_net3.h5')
 

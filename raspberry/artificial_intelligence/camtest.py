@@ -20,7 +20,7 @@ model = keras.models.load_model('models/neural_net3.h5')
 import cv2
 
 # On accède à la webcam
-cam = cv2.VideoCapture(0)
+cam = cv2.VideoCapture(1)
 
 # On prend une photo
 ret, image = cam.read()
@@ -50,9 +50,6 @@ while True:
 
         print("This image n1 most likely belongs to {} with a {:.2f} percent confidence.".format(
             class_names[np.argmax(score)], 100 * np.max(score)))
-
-        # On ajoute un temps d'attente
-        time.sleep(2)
         # et on arrête la boucle si on appuie sur la touche 'q'
         if cv2.waitKey(25) & 0xFF == ord('q'):
             break
