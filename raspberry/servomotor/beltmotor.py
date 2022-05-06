@@ -1,5 +1,3 @@
-from time import sleep
-
 import RPi.GPIO as GPIO
 
 # Definition des pins
@@ -18,10 +16,13 @@ GPIO.setup(M1_En, GPIO.OUT)
 GPIO.setup(M1_In1, GPIO.OUT)
 GPIO.setup(M1_In2, GPIO.OUT)
 
-# Initialisation
-M1_Vitesse = GPIO.PWM(M1_En, 100)
 
-M1_Vitesse.start(100)
+# Initialisation
+
+def start():
+    M1_Vitesse = GPIO.PWM(M1_En, 100)
+
+    M1_Vitesse.start(100)
 
 
 def sens1(moteurNum):
@@ -34,33 +35,30 @@ def sens2(moteurNum):
     GPIO.output(Pins[moteurNum - 1][2], GPIO.HIGH)
 
 
-def arret(moteurNum):
+def pause(moteurNum):
     GPIO.output(Pins[moteurNum - 1][1], GPIO.LOW)
     GPIO.output(Pins[moteurNum - 1][2], GPIO.LOW)
-    print("Moteur", moteurNum, "arret.")
+    print("Moteur", moteurNum, "arrêt.")
 
 
-def arretComplet():
+def stop():
     GPIO.output(Pins[0][1], GPIO.LOW)
     GPIO.output(Pins[0][2], GPIO.LOW)
-    print("Moteurs arretes.")
+    print("Moteurs arrêtés.")
 
-
-arretComplet()
-
-print("Moteur 1 tourne dans le sens 1.")
-sens1(1)
-sleep(3)
-arretComplet()
-sleep(3)
-print("Moteur 1 tourne dans le sens 2.")
-sens2(1)
-sleep(2)
-arret(1)
-sleep(1)
-
-print("Moteur 1 tourne dans le sens 1.")
-while True:
-    sens1(1)
-
-
+# stop()
+#
+# print("Moteur 1 tourne dans le sens 1.")
+# sens1(1)
+# sleep(3)
+# stop()
+# sleep(3)
+# print("Moteur 1 tourne dans le sens 2.")
+# sens2(1)
+# sleep(2)
+# pause(1)
+# sleep(1)
+#
+# print("Moteur 1 tourne dans le sens 1.")
+# while True:
+#     sens1(1)
