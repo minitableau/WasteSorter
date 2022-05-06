@@ -46,6 +46,8 @@ while True:
 
         print("This image n1 most likely belongs to {} with a {:.2f} percent confidence.".format(
             class_names[np.argmax(score)], 100 * np.max(score)))
+
+        # On ajoute un temps d'attente
         # et on arrête la boucle si on appuie sur la touche 'q'
         if cv2.waitKey(25) & 0xFF == ord('q'):
             break

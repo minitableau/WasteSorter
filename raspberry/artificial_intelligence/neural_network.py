@@ -59,7 +59,7 @@ model.compile(optimizer='adam',
               loss=tf.keras.losses.SparseCategoricalCrossentropy(from_logits=True),
               metrics=['accuracy'])
 
-epochs = 15
+epochs = 10
 history = model.fit(
     train_ds,
     validation_data=val_ds,
@@ -92,7 +92,7 @@ plt.legend(loc='upper right')
 plt.title('Training and Validation Loss')
 plt.show()
 
-test = tf.keras.utils.load_img('resources/masque_noir_test.png', target_size=(img_height, img_width))
+test = tf.keras.utils.load_img('resources/M.jpg', target_size=(img_height, img_width))
 
 plt.imshow(test)
 plt.show()
