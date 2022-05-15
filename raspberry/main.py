@@ -32,7 +32,7 @@ def start():
         classname, confidence = detect(image)
         print("Détection d'un", classname, "avec une confiance de", confidence)
 
-        if classname != "boite" and confidence > 0.67:
+        if classname != "boite" and confidence > 67:
             definedAngle = servomotor.object_to_angle[classname]
             if definedAngle:
                 servomotor.rotate(definedAngle)
