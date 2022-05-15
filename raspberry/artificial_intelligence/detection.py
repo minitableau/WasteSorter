@@ -3,19 +3,19 @@ import numpy as np
 import tensorflow as tf
 from tensorflow import keras
 
-img_height = 180
-img_width = 180
+img_height = 280
+img_width = 280
 batch_size = 32
 
-train_ds = tf.keras.utils.image_dataset_from_directory('resources/dechets/', validation_split=0.2, subset="training",
+train_ds = tf.keras.utils.image_dataset_from_directory('artificial_intelligence/resources/dechets/', validation_split=0.2, subset="training",
                                                        seed=123, image_size=(img_height, img_width),
                                                        batch_size=batch_size)
 
 class_names = train_ds.class_names
-model = keras.models.load_model('models/neural_net3.h5')
+model = keras.models.load_model('artificial_intelligence/models/MODEL.h5')
 
-largeur_image = 180
-hauteur_image = 180
+largeur_image = 280
+hauteur_image = 280
 
 
 def detect(img):

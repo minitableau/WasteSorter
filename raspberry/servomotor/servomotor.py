@@ -3,11 +3,11 @@
 
 import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BOARD)  # Use Board numerotation mode
+GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)  # Disable warnings
 
 # Use pin 12 for PWM signal
-pwm_gpio = 12
+pwm_gpio = 18
 frequency = 50
 GPIO.setup(pwm_gpio, GPIO.OUT)
 pwm = GPIO.PWM(pwm_gpio, frequency)
@@ -27,14 +27,14 @@ def angle_to_percent(angle):
     return start + angle_as_percent
 
 
-pwm.start(angle_to_percent(90))
+pwm.start(angle_to_percent(75))  # 75 dcp ?
 
 
 def setBasePosition():
     """
     Set the base position of the servo
     """
-    pwm.ChangeDutyCycle(angle_to_percent(90))
+    pwm.ChangeDutyCycle(angle_to_percent(75))  # 75 dcp ?
 
 
 def rotate(angle):
@@ -44,6 +44,7 @@ def rotate(angle):
     :return: None
     """
 
+    print("rotation :", angle)
     percent = angle_to_percent(angle)
     pwm.ChangeDutyCycle(percent)
 
@@ -58,7 +59,7 @@ def stop():
 
 
 object_to_angle = {
-    'masque': 90,
+    'masque2': 90,
     'boite': 75,
     'gobelet': 60
 }

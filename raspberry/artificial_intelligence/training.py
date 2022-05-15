@@ -5,8 +5,8 @@ from tensorflow.keras import layers
 from tensorflow.keras.models import Sequential
 
 #
-img_height = 180
-img_width = 180
+img_height = 280
+img_width = 280
 batch_size = 32
 
 train_ds = tf.keras.utils.image_dataset_from_directory('resources/dechets/', validation_split=0.2, subset="training",
