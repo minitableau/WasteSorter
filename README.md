@@ -49,7 +49,8 @@ Waste sorting is a major environmental challenge. This project aims to **automat
 ## 📸 Aperçu du projet / Project Overview  
 
 Example:  
-![Tri des déchets en action](./images/waste_sorting_demo.gif)  
+![Tri des déchets en action](./Project1.jpg)
+![Tri des déchets en action](.Project2.jpg)
 
 ---
 
